@@ -1,0 +1,18 @@
+<div class="container">
+    <h2>All Users</h2>
+
+    {{#each users}}
+        <div>
+            <p>ID : {{id}}</p>
+            <p>Name : {{Name}}</p>
+            <p>Address : {{address}} </p>
+            <p>Mobile No: {{mobileNo}}</p>
+            <p>Email : {{email}} </p>
+            <p>Class:{{Class}} </p>
+            <p>{{title}}</p>
+            <hr>
+        </div>
+    {{else}}
+        <p>No Users available</p>
+    {{/each}}
+</div>

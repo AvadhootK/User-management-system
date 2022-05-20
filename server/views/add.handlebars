@@ -1,0 +1,30 @@
+{{#each errors}}
+    <div>
+        <p>{{text}}</p>
+    </div>
+{{/each}}
+<form action="/users/add" method="POST">
+    <p>
+        <label for="name">Name : </label>
+        <input type="text" id="name" placeholder="Enter the name" value={{Name}}>
+    </p>
+    <p>
+        <label for="address">Adderss : </label>
+        <input type="text" id="address" placeholder="Enter adderss" value={{address}}>
+    </p>
+    <p>
+        <label for="mobile">Mobile No : </label>
+        <input type="number" id="mobile" placeholder="Enter mobile number" value={{mobileNo}} >   
+    </p>
+    <p>
+        <label for="email">Email : </label>
+        <input type="text" id="email" placeholder="Enter an email id" value={{email}} >
+    </p>
+    <p>
+        <label for="class">Class : </label>
+        <input type="number" id="class" placeholder="Enter 4-digit class" value={{Class}} >
+    </p>
+    <p>
+        <input type="submit" value="Add User">
+    </p>
+</form>

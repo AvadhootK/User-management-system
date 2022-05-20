@@ -1,0 +1,200 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "User Project CRUD",
+        "description": "Nodejs REST api"
+    },
+    "host": "localhost:8081",
+    "basePath": "/users",
+    "tags": [
+        {
+            "name": "Users",
+            "description": "Nodejs REST api"
+        }
+    ],
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": ["Users"],
+                "summary": "Get all users / get user by name",
+                "parameters": [
+                    {
+                        "name": "user_name",
+                        "in": "query",
+                        "description": "Name of user we want to find",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete all users",
+                "tags": ["Users"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            }
+        },
+        "/add": {
+            "post": {
+                "summary": "Add a new User",
+                "tags": ["Users"],
+                "description":"Add a new User",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User that we want to create",
+                        "schema": {
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                ],
+                "produces": ["application/json"],
+                "responses":{
+                    "200": {
+                        "description": "New user created",
+                        "schema": {
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/{id}": {
+            "get": {
+                "summary": "Get user with given ID",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of user",
+                        "type": "integer"
+                    }
+                ],
+                "responses":{
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update user with given ID",
+                "tags":["Users"],
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "User with new values",
+                        "schema": {
+                          "$ref": "#/definitions/updateUser"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of user that we want to update",
+                        "type": "integer"
+                    }
+                ],
+                "responses":{
+                    "200": {
+                        "description": "User is updated",
+                        "schema": {
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary":"Delete user with given ID",
+                "tags": ["Users"],
+                "parameters":[
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of user that we want to delete",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User is deleted",
+                        "schema": {
+                            "$ref":"#/definitions/User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": ["user_name", "mobile_no", "email"],
+            "properties": {
+                "user_name": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "mobile_no": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "user_class": {
+                    "type":"integer"
+                }
+            }
+        },
+        "Users": {
+            "type": "array",
+            "$ref":"#/definitions/User"
+        },
+        "updateUser": {
+            "required": ["user_name", "mobile_no", "email"],
+            "properties": {
+                "user_name": {
+                    "type": "string"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "mobile_no": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "user_class": {
+                    "type":"integer"
+                }
+            }
+        }
+    }
+}
